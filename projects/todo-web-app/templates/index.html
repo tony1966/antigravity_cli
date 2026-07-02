@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="輕量、優雅的待辦事項管理工具，支援新增、完成、刪除，資料即時儲存。" />
+  <title>Todo App — 待辦事項</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+</head>
+
+<body>
+
+  <!-- Toast Container -->
+  <div id="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+  <main class="app-container">
+
+    <!-- ── Header ── -->
+    <header class="app-header">
+      <div class="logo-icon" aria-hidden="true">✦</div>
+      <h1>Todo App</h1>
+      <p>簡單高效，專注當下</p>
+    </header>
+
+    <!-- ── Stats Bar ── -->
+    <div class="stats-bar" role="status" aria-label="統計資訊">
+      <span class="stat-chip" id="stat-total">📋 0 項</span>
+      <span class="stat-chip" id="stat-pending">⏳ 0 待辦</span>
+      <span class="stat-chip" id="stat-done">✅ 0 完成</span>
+    </div>
+
+    <!-- ── Add Todo Form ── -->
+    <section class="add-form-card" aria-label="新增待辦事項">
+      <label class="form-label" for="todo-input">新增事項</label>
+      <div class="input-row">
+        <input
+          type="text"
+          id="todo-input"
+          placeholder="今天要做什麼？按 Enter 或點擊新增…"
+          maxlength="200"
+          autocomplete="off"
+          aria-label="輸入待辦事項內容"
+        />
+        <button id="add-btn" class="btn-add" aria-label="新增待辦事項">
+          <span>＋</span> 新增
+        </button>
+      </div>
+    </section>
+
+    <!-- ── Filter Tabs ── -->
+    <nav class="filter-tabs" role="tablist" aria-label="篩選待辦事項">
+      <button class="filter-tab active" data-filter="all"     role="tab" aria-selected="true"  id="tab-all">全部</button>
+      <button class="filter-tab"         data-filter="pending" role="tab" aria-selected="false" id="tab-pending">未完成</button>
+      <button class="filter-tab"         data-filter="done"    role="tab" aria-selected="false" id="tab-done">已完成</button>
+    </nav>
+
+    <!-- ── Todo List ── -->
+    <section id="todo-list" role="list" aria-label="待辦事項清單">
+      <!-- Items are rendered dynamically by app.js -->
+    </section>
+
+    <!-- ── Footer ── -->
+    <footer class="app-footer">
+      <p>Todo Web App &mdash; Powered by Flask &amp; Vanilla JS</p>
+    </footer>
+
+  </main>
+
+  <!-- App JS (loaded after DOM) -->
+  <script src="{{ url_for('static', filename='js/app.js') }}" defer></script>
+
+</body>
+</html>
